@@ -1,0 +1,18 @@
+﻿@model List<string>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListTodo</title>
+</head>
+<body>
+    @foreach (var item in @Model)
+    {
+        <h2>@item</h2>
+    }
+    <a href="/Home/NewTodo">Mégegyet!</a>
+    <a href="/Home/Index">Főoldal</a>
+</body>
+</html>
