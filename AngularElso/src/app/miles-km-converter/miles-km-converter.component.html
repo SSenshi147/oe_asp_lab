@@ -1,0 +1,13 @@
+<h2>Km to miles</h2>
+
+<form>
+    <div class="form-group">
+      <label style="font-size: 1.4em;">Km value</label>
+      <input class="form-control" type="text" (click)="reset()" #km/>
+    </div>
+</form>
+<button class="btn-primary" (click)="calculate(km)">Calculate!</button>
+<br/><br/>
+<div class="alert alert-primary" *ngIf="miles > 0" role="alert">
+    <strong>Miles: {{miles}}</strong>
+</div>
