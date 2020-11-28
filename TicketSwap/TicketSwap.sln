@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Api", "TicketSwa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Shared", "TicketSwap.Shared\TicketSwap.Shared.csproj", "{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Wpf", "TicketSwap.Wpf\TicketSwap.Wpf.csproj", "{B86458A3-1F19-482C-A9B9-7A441A793476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86458A3-1F19-482C-A9B9-7A441A793476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86458A3-1F19-482C-A9B9-7A441A793476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86458A3-1F19-482C-A9B9-7A441A793476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86458A3-1F19-482C-A9B9-7A441A793476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
