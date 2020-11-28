@@ -22,12 +22,14 @@ namespace TicketSwap.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        string _token;
         RestService<Ticket, string> _restService;
 
-        public MainWindow()
+        public MainWindow(string token)
         {
             InitializeComponent();
-            _restService = new RestService<Ticket, string>("http://localhost:65383", "/api/ticket");
+            _token = token;
+            _restService = new RestService<Ticket, string>("https://localhost:44398", "/api/ticket", _token);
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
