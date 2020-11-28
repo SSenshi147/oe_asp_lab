@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketSwap.Api.Data;
 
 namespace TicketSwap.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201128161434_identity_added")]
+    partial class identity_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,16 +51,9 @@ namespace TicketSwap.Api.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "e2c49533-1811-4135-a9e9-ed11ab7d80e8",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            ConcurrencyStamp = "852d645e-b0bd-4230-b37d-82577c7ff472",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
+                            ConcurrencyStamp = "27c0d9fc-d8a9-4ad9-ba74-56daea2885d5",
+                            Name = "Marci",
+                            NormalizedName = "MARCI"
                         });
                 });
 
