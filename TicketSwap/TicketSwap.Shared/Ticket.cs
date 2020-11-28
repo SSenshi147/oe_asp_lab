@@ -14,10 +14,5 @@ namespace TicketSwap.Shared
         public DateTime EventDate { get; set; }
 
         public int EventPrice { get; set; }
-
-        public Ticket()
-        {
-            this.UID = Guid.NewGuid().ToString();
-        }
     }
 }

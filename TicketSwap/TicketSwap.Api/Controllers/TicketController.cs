@@ -35,6 +35,7 @@ namespace TicketSwap.Api.Controllers
         [HttpPost]
         public void Post([FromBody] Ticket value)
         {
+            value.UID = Guid.NewGuid().ToString();
             _context.Tickets.Add(value);
             _context.SaveChanges();
         }
