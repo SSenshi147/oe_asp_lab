@@ -35,6 +35,8 @@ namespace TicketSwap.Wpf
             _notifyService.AddHandler("TicketUpdate", async () => await Sync());
 
             _notifyService.Init();
+
+            Sync();
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)

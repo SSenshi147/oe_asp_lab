@@ -1,0 +1,19 @@
+<div class="container" style="padding: 10px;">
+    <h2>Sell new ticket</h2>
+    <form>
+        <div class="form-group">
+            <label style="font-size: 1.3em;">Event name</label>
+            <input type="text" class="form-control" #eventname>
+        </div>
+        <div class="form-group">
+            <label style="font-size: 1.3em;">Event date</label>
+            <input type="date" class="form-control" #eventdate>
+        </div>
+        <div class="form-group">
+            <label style="font-size: 1.3em;">Event price</label>
+            <input type="number" class="form-control" #eventprice>
+        </div>
+
+        <button type="button" (click)="sell(eventname, eventdate, eventprice)" class="btn btn-primary">Sell</button>
+    </form>
+</div>
