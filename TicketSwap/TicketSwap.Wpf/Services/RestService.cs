@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TicketApiClient
+namespace TicketSwap.Wpf.Services
 {
     class RestService<T, K>
     {

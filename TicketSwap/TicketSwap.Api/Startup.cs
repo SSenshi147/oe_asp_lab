@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketSwap.Api.Data;
+using TicketSwap.Api.Hubs;
 
 namespace TicketSwap.Api
 {
@@ -68,6 +69,7 @@ namespace TicketSwap.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TicketSwap.Api", Version = "v1" });
             });
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +93,7 @@ namespace TicketSwap.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<TicketHub>("/api/ticketHub");
             });
         }
     }

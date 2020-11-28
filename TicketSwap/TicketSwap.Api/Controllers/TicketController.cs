@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TicketSwap.Api.Data;
+using TicketSwap.Api.Hubs;
 using TicketSwap.Shared;
 
 namespace TicketSwap.Api.Controllers
@@ -20,11 +22,13 @@ namespace TicketSwap.Api.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHubContext<TicketHub> _hubContext;
 
-        public TicketController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public TicketController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHubContext<TicketHub> hubContext)
         {
             _context = context;
             _userManager = userManager;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -50,25 +54,30 @@ namespace TicketSwap.Api.Controllers
             value.Seller = myself;
             _context.Tickets.Add(value);
             _context.SaveChanges();
+
+            await _hubContext.Clients.All.SendAsync("TicketUpdate");
+
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] Ticket value)
+        public async Task Put(string id, [FromBody] Ticket value)
         {
             Ticket ticket = _context.Tickets.SingleOrDefault(x => x.UID == id);
             value.UID = ticket.UID;
             _context.Tickets.Remove(ticket);
             _context.Tickets.Add(value);
             _context.SaveChanges();
+            await _hubContext.Clients.All.SendAsync("TicketUpdate");
         }
 
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
             Ticket ticket = _context.Tickets.SingleOrDefault(x => x.UID == id);
             _context.Tickets.Remove(ticket);
             _context.SaveChanges();
+            await _hubContext.Clients.All.SendAsync("TicketUpdate");
         }
     }
 }

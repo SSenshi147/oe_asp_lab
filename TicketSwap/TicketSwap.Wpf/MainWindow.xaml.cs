@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TicketApiClient;
 using TicketSwap.Shared;
+using TicketSwap.Wpf.Services;
 
 namespace TicketSwap.Wpf
 {
@@ -24,12 +24,17 @@ namespace TicketSwap.Wpf
     {
         string _token;
         RestService<Ticket, string> _restService;
-
+        NotifyService _notifyService;
         public MainWindow(string token)
         {
             InitializeComponent();
             _token = token;
             _restService = new RestService<Ticket, string>("https://localhost:44398", "/api/ticket", _token);
+            _notifyService = new NotifyService("https://localhost:44398/api/ticketHub");
+
+            _notifyService.AddHandler("TicketUpdate", async () => await Sync());
+
+            _notifyService.Init();
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
@@ -41,7 +46,7 @@ namespace TicketSwap.Wpf
             _restService.Post(ticket);
         }
 
-        private async void Sync_Click(object sender, RoutedEventArgs e)
+        private async Task Sync()
         {
             listBox.Items.Clear();
             var tickets = await _restService.Get();
@@ -49,6 +54,11 @@ namespace TicketSwap.Wpf
             {
                 listBox.Items.Add(item);
             }
+        }
+
+        private async void Sync_Click(object sender, RoutedEventArgs e)
+        {
+            await Sync();
         }
     }
 }
