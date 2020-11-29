@@ -1,0 +1,56 @@
+﻿@page "/create"
+@using TicketSwap.Shared
+@inject ISessionStorageService _session
+@inject NavigationManager _navMgr
+@inject HttpClient _http
+
+<h3>Create</h3>
+
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Event name</label>
+        <input @bind="@eventName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter event name">
+    </div>
+    <div class="form-group">
+        <label for="inputDate">Event date</label>
+        <input @bind="@eventDate" type="datetime" class="form-control" id="inputDate">
+    </div>
+    <div class="form-group">
+        <label for="inputPrice">Event price</label>
+        <input @bind="@eventPrice" type="number" class="form-control" id="inputPrice">
+    </div>
+    <button @onclick="async() => await CreateTicket()" type="button" class="btn btn-primary">Add</button>
+</form>
+
+@code {
+    private string token;
+    private string eventName;
+    private DateTime eventDate;
+    private int eventPrice;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            token = await _session.GetItemAsync<string>("token");
+        }
+        catch { }
+        if (token == null || token.Length <= 3)
+        {
+            _navMgr.NavigateTo("/login");
+        }
+    }
+
+    private async Task CreateTicket()
+    {
+        Ticket ticketToSend = new Ticket()
+        {
+            EventName = eventName,
+            EventDate = eventDate,
+            EventPrice = eventPrice
+        };
+        _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        await _http.PostAsJsonAsync<Ticket>("https://localhost:44398/api/ticket", ticketToSend);
+        _navMgr.NavigateTo("/tickets");
+    }
+}

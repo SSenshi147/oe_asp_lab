@@ -1,0 +1,64 @@
+﻿@page "/tickets"
+@using TicketSwap.Shared
+@using Microsoft.AspNetCore.SignalR.Client
+@inject ISessionStorageService _session
+@inject NavigationManager _navMgr
+@inject HttpClient _http
+
+<h3>Tickets</h3>
+@if (tickets.Length > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event name</th>
+                <th>Event date</th>
+                <th>Event price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in tickets)
+            {
+                <tr>
+                    <td>@item.EventName</td>
+                    <td>@item.EventDate</td>
+                    <td>@item.EventPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string token;
+    private Ticket[] tickets;
+    private HubConnection hub;
+
+    protected override async Task OnInitializedAsync()
+    {
+        tickets = new Ticket[0];
+        try
+        {
+            token = await _session.GetItemAsync<string>("token");
+        }
+        catch { }
+        if (token == null || token.Length <= 3)
+        {
+            _navMgr.NavigateTo("/login");
+        }
+        else
+        {
+            hub = new HubConnectionBuilder().WithUrl("https://localhost:44398/api/ticketHub").Build();
+            hub.On("TicketUpdate", TicketsLoad);
+            await hub.StartAsync();
+            await TicketsLoad();
+        }
+    }
+
+    private async Task TicketsLoad()
+    {
+        _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        tickets = await _http.GetFromJsonAsync<Ticket[]>("https://localhost:44398/api/ticket");
+        StateHasChanged();
+    }
+}

@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Api", "TicketSwap.Api\TicketSwap.Api.csproj", "{E09FE2A4-4A9D-4542-972B-4E929C9AAB3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSwap.Api", "TicketSwap.Api\TicketSwap.Api.csproj", "{E09FE2A4-4A9D-4542-972B-4E929C9AAB3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Shared", "TicketSwap.Shared\TicketSwap.Shared.csproj", "{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSwap.Shared", "TicketSwap.Shared\TicketSwap.Shared.csproj", "{9EAA1C6A-8E68-4B2F-A38C-FD8A633C2832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSwap.Wpf", "TicketSwap.Wpf\TicketSwap.Wpf.csproj", "{B86458A3-1F19-482C-A9B9-7A441A793476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSwap.Wpf", "TicketSwap.Wpf\TicketSwap.Wpf.csproj", "{B86458A3-1F19-482C-A9B9-7A441A793476}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSwap.Blazor", "TicketSwap.Blazor\TicketSwap.Blazor.csproj", "{19C988F9-884E-4859-9221-D097387F7A24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B86458A3-1F19-482C-A9B9-7A441A793476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86458A3-1F19-482C-A9B9-7A441A793476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86458A3-1F19-482C-A9B9-7A441A793476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C988F9-884E-4859-9221-D097387F7A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C988F9-884E-4859-9221-D097387F7A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C988F9-884E-4859-9221-D097387F7A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C988F9-884E-4859-9221-D097387F7A24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
