@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="inputDate">Event date</label>
-        <input @bind="@eventDate" type="datetime" class="form-control" id="inputDate">
+        <input @bind="@eventDate" type="date" class="form-control" id="inputDate">
     </div>
     <div class="form-group">
         <label for="inputPrice">Event price</label>
@@ -38,6 +38,10 @@
         if (token == null || token.Length <= 3)
         {
             _navMgr.NavigateTo("/login");
+        }
+        else
+        {
+            eventDate = DateTime.Today;
         }
     }
 
